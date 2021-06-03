@@ -5,11 +5,15 @@ namespace Multiviz\Request;
 
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\RequestException;
 use Multiviz\Multiviz;
 use Multiviz\Resources\Card;
 use Multiviz\Resources\Payment;
 use Multiviz\Resources\SellerInfo;
 use Multiviz\Resources\TokenCard;
+use Psr\Http\Client\ClientExceptionInterface;
+
 
 class PaymentRequest {
 
@@ -19,44 +23,7 @@ class PaymentRequest {
         $this->app = $app;
     }
 
-    public function getTokenCard($numberCard){
-        $token = new TokenCard($this->app);
-        return $token->makeTokenCard($numberCard);
-    }
-
-    public function paymentCreditCard() {
-        $payment = new Payment();
-        $payment->setTransactionType('credit');
-        $payment->setAmount(10);
-        $payment->setInstallments(1);
-        $payment->setCaptureType('ac');
-        $payment->setCurrencyCode('brl');
-        $payment->setProductType('AA');
-
-
-
-        $cardInfo = new Card();
-        $cardInfo->setNumberToken($this->getTokenCard("5127070096468707"));
-        $cardInfo->setCardholderName('JOSE SILVA');
-        $cardInfo->setSecurityCode('123');
-        $cardInfo->setBrand('visa');
-        $cardInfo->setExpirationMonth('01');
-        $cardInfo->setExpirationYear('27');
-
-        $sellerInfo = new SellerInfo();
-        $sellerInfo->setOrderNumber('000001');
-        $sellerInfo->setSoftDescriptor('CompraTeste');
-        $sellerInfo->setDynamicMcc('9999');
-        $sellerInfo->setCavvUcaf('commerceauth');
-        $sellerInfo->setEci('05');
-        $sellerInfo->setXid('commerc');
-        $sellerInfo->setProgramProtocol('2.0.1');
-
-        $data = array(
-            "payment" => $payment,
-            "cardInfo" => $cardInfo,
-            "sellerInfo" => $sellerInfo
-        );
+    public function paymentCard(Payment $payment, Card $cardInfo, SellerInfo $sellerInfo) {
 
         try {
             $request = new Client();
@@ -71,19 +38,37 @@ class PaymentRequest {
                        "payment" => [
                            'transactionType' =>  $payment->getTransactionType(),
                            'amount' => $payment->getAmount(),
+                           'currencyCode' => $payment->getCurrencyCode(),
+                           'productType' => $payment->getProductType(),
+                           'installments' => $payment->getInstallments(),
+                           'captureType' => $payment->getCaptureType(),
+                           'recurrent' => $payment->getRecurrent()
                        ],
-                       "cardInfo" => $cardInfo,
-                       "sellerInfo" => $sellerInfo
+                       "cardInfo" => [
+                           'vaultId' => $cardInfo->getVaultId(),
+                           'numberToken' => $cardInfo->getNumberToken(),
+                           'cardHolderName' => $cardInfo->getCardholderName(),
+                           'securityCode' => $cardInfo->getSecurityCode(),
+                           'brand' => $cardInfo->getBrand(),
+                           'expirationMonth' => $cardInfo->getExpirationMonth(),
+                           'expirationYear' => $cardInfo->getExpirationYear()
+                       ],
+                       "sellerInfo" => [
+                           'orderNumber' => $sellerInfo->getOrderNumber(),
+                           'softDescriptor' => $sellerInfo->getSoftDescriptor(),
+                           'dynamicMcc' => $sellerInfo->getDynamicMcc(),
+                           'cavvUcaf' => $sellerInfo->getCavvUcaf(),
+                           'eci' => $sellerInfo->getEci(),
+                           'xid' => $sellerInfo->getXid(),
+                           'programProtocol' => $sellerInfo->getProgramProtocol()
+                       ]
                    ]
             ]);
 
-            $numberToken = json_decode($response->getBody());
-
-            var_dump($response->getBody());
-        }catch (\Exception $e){
-            var_dump(
-                $e->getMessage()
-            );
+            return $response->getBody();
+        } catch (RequestException $e) {
+            $responseBody = $e->getResponse()->getBody();
+            return  json_decode($responseBody)[0];
         }
     }
 

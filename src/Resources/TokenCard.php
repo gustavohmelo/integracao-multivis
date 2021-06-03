@@ -5,6 +5,7 @@ namespace Multiviz\Resources;
 
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use Multiviz\Exceptions\AuthErrorException;
 use Multiviz\Multiviz;
 
@@ -34,9 +35,10 @@ class TokenCard {
 
             $numberToken = json_decode($response->getBody());
             return ($numberToken->numberToken);
-        }catch (\Exception $e){
-            return 'Cartão Invalido';
-        }
+        }catch (RequestException $e) {
+           $responseBody = $e->getResponse()->getBody();
+           return json_decode($responseBody)[0];
+       }
     }
 
 }
