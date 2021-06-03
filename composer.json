@@ -1,0 +1,25 @@
+{
+    "name": "magus94/multiviz-payment",
+    "description": "Integra\u0000\u0000o com o Gateway de Pagamento Multiviz",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^7.2.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gustavo Melo",
+            "email": "gustavo.melo@manacredito.com.br"
+        },
+        {
+            "name": "Marcelo Melo Jr",
+            "email": "marcelo.melo@manacredito.com.br"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Multiviz\\": "src/"
+        }
+    }
+}
