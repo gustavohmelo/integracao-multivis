@@ -1,18 +1,18 @@
 <?php
 
 
-namespace Multiviz\Request;
+namespace Multivis\Request;
 
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
-use Multiviz\Multiviz;
+use Multivis\Multivis;
 
 class CancelPaymentRequest
 {
     private $app;
 
-    public function __construct(Multiviz $app)
+    public function __construct(Multivis $app)
     {
         $this->app = $app;
     }
@@ -31,9 +31,8 @@ class CancelPaymentRequest
                 ]
             ]);
 
-            return $response;
-        }catch (RequestException $e) {
-            $responseBody = $e->getResponse()->getBody();
+            return $response->getBody();
+        }catch (RequestException $e) {            $responseBody = $e->getResponse()->getBody();
             return json_decode($responseBody)[0];
         }
     }

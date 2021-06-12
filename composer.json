@@ -1,6 +1,6 @@
 {
-    "name": "magus94/multiviz-payment",
-    "description": "Integra\u0000\u0000o com o Gateway de Pagamento Multiviz",
+    "name": "magus94/multivis-payment",
+    "description": "Integra\u0000\u0000o com o Gateway de Pagamento MultivisPay",
     "type": "library",
     "require": {
         "guzzlehttp/guzzle": "^7.2.0"
@@ -19,7 +19,7 @@
     "minimum-stability": "dev",
     "autoload": {
         "psr-4": {
-            "Multiviz\\": "src/"
+            "Multivis\\": "src/"
         }
     }
 }

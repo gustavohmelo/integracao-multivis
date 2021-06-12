@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Multiviz\Resources;
+namespace Multivis\Resources;
 
 
 class SellerInfo {
@@ -110,6 +110,40 @@ class SellerInfo {
      */
     public function setProgramProtocol($programProtocol): void {
         $this->programProtocol = $programProtocol;
+    }
+
+    public function toArray() : array {
+        $seller = [];
+
+        if ($this->getOrderNumber()){
+            $seller['orderNumber'] = $this->getOrderNumber();
+        }
+
+        if ($this->getSoftDescriptor()){
+            $seller['softDescriptor'] = $this->getSoftDescriptor();
+        }
+
+        if ($this->getDynamicMcc()){
+            $seller['dynamicMcc'] = $this->getDynamicMcc();
+        }
+
+        if ($this->getCavvUcaf()){
+            $seller['cavvUcaf'] = $this->getCavvUcaf();
+        }
+
+        if ($this->getEci()){
+            $seller['eci'] = $this->getEci();
+        }
+
+        if ($this->getXid()){
+            $seller['xid'] = $this->getXid();
+        }
+
+        if ($this->getProgramProtocol()){
+            $seller['programProtocol'] = $this->getProgramProtocol();
+        }
+
+        return $seller;
     }
 
 

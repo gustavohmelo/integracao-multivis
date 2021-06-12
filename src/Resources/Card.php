@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Multiviz\Resources;
+namespace Multivis\Resources;
 
 
 class Card {
@@ -110,6 +110,40 @@ class Card {
      */
     public function setExpirationYear($expirationYear): void {
         $this->expirationYear = $expirationYear;
+    }
+
+    public function toArray(){
+        $card = [];
+
+        if($this->getVaultId()){
+            $card['vaultId'] = $this->getVaultId();
+        }
+
+        if($this->getNumberToken()){
+            $card['numberToken'] = $this->getNumberToken();
+        }
+
+        if ($this->getCardholderName()){
+            $card['cardholderName'] = $this->getCardholderName();
+        }
+
+        if ($this->getSecurityCode()){
+            $card['securityCode'] = $this->getSecurityCode();
+        }
+
+        if ($this->getBrand()){
+            $card['brand'] = $this->getBrand();
+        }
+
+        if ($this->getExpirationMonth()){
+            $card['expirationMonth'] = $this->getExpirationMonth();
+        }
+
+        if ($this->getExpirationYear()){
+            $card['expirationYear'] = $this->getExpirationYear();
+        }
+
+        return $card;
     }
 
 

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Multiviz\Resources;
+namespace Multivis\Resources;
 
 
 class Items {
@@ -80,5 +80,27 @@ class Items {
      */
     public function setRateAmount($rateAmount): void {
         $this->rateAmount = $rateAmount;
+    }
+
+    public function toArray() : array {
+        $item = [];
+
+        if ($this->getId()){
+            $item['id'] = $this->getId();
+        }
+        if ($this->getDescription()){
+            $item['description'] = $this->getDescription();
+        }
+        if ($this->getAmount()){
+            $item['amount'] = $this->getAmount();
+        }
+        if ($this->getRatePercent()){
+            $item['ratePercent'] = $this->getRatePercent();
+        }
+        if ($this->getRateAmount()){
+            $item['rateAmount'] = $this->getRateAmount();
+        }
+
+        return $item;
     }
 }

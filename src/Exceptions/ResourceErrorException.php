@@ -1,6 +1,6 @@
 <?php
 
-namespace Multiviz\Exceptions;
+namespace Multivis\Exceptions;
 
 use http\Env;
 

@@ -1,20 +1,20 @@
 <?php
 
-namespace Multiviz;
+namespace Multivis;
 
 use GuzzleHttp\Client;
-use Multiviz\Exceptions\ResourceErrorException;
-use Multiviz\Request\CancelPaymentRequest;
-use Multiviz\Request\Environment;
-use Multiviz\Request\PaymentRequest;
-use Multiviz\Resources\Auth;
-use Multiviz\Resources\Card;
-use Multiviz\Resources\Enviroment;
-use Multiviz\Resources\Payment;
-use Multiviz\Resources\SellerInfo;
-use Multiviz\Resources\TokenCard;
+use Multivis\Exceptions\ResourceErrorException;
+use Multivis\Request\CancelPaymentRequest;
+use Multivis\Request\Environment;
+use Multivis\Request\PaymentRequest;
+use Multivis\Resources\Auth;
+use Multivis\Resources\Card;
+use Multivis\Resources\Enviroment;
+use Multivis\Resources\Payment;
+use Multivis\Resources\SellerInfo;
+use Multivis\Resources\TokenCard;
 
-class Multiviz {
+class Multivis {
 
     public $client_id;
     public $client_secret;

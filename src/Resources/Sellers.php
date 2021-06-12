@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Multiviz\Resources;
+namespace Multivis\Resources;
 
 
 class Sellers {
@@ -50,7 +50,5 @@ class Sellers {
     public function setItems(Items $items): void {
         $this->items = $items;
     }
-
-
 
 }

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Multiviz\Exceptions;
+namespace Multivis\Exceptions;
 
 
 use Throwable;

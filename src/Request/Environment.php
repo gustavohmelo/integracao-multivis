@@ -1,10 +1,12 @@
 <?php
 
 
-namespace Multiviz\Request;
+namespace Multivis\Request;
 
 
-class Environment implements \Multiviz\Resources\Enviroment {
+use Multivis\Resources\Enviroment;
+
+class Environment implements Enviroment {
     private $api;
 
     /**

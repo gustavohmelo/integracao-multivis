@@ -1,18 +1,18 @@
 <?php
 
 
-namespace Multiviz\Resources;
+namespace Multivis\Resources;
 
 
 use GuzzleHttp\Client;
-use Multiviz\Exceptions\AuthErrorException;
-use Multiviz\Multiviz;
+use Multivis\Exceptions\AuthErrorException;
+use Multivis\Multivis;
 
 class Auth {
 
     private $app;
 
-    public function __construct(Multiviz $app) {
+    public function __construct(Multivis $app) {
         $this->app = $app;
     }
 

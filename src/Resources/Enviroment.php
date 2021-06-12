@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Multiviz\Resources;
+namespace Multivis\Resources;
 
 
 interface Enviroment {

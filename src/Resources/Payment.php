@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Multiviz\Resources;
+namespace Multivis\Resources;
 
 
 class Payment {
@@ -112,10 +112,36 @@ class Payment {
         $this->recurrent = $recurrent;
     }
 
-    public function __serialize(): array {
-        return [
-            'recurrent' => $this->getRecurrent()
-        ];
+    public function toArray() : array {
+        $payment = [];
+
+        if ($this->getTransactionType()){
+            $payment['transactionType'] = $this->getTransactionType();
+        }
+
+        if( $this->getAmount()){
+            $payment['amount'] = $this->getAmount();
+        }
+
+        if( $this->getCurrencyCode()){
+            $payment['currencyCode'] = $this->getCurrencyCode();
+        }
+
+        if( $this->getProductType()){
+            $payment['productType'] = $this->getProductType();
+        }
+
+        if( $this->getInstallments()){
+            $payment['installments'] = $this->getInstallments();
+        }
+
+        if( $this->getCaptureType()){
+            $payment['captureType'] = $this->getCaptureType();
+        }
+
+        $payment['recurrent'] = $this->getRecurrent();
+
+        return $payment;
     }
 
 
