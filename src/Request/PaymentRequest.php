@@ -42,9 +42,7 @@ class PaymentRequest {
             ]);
 
             return $response->getBody();
-//            return $response->getBody();
         } catch (RequestException $e) {
-            var_dump($e);
             $responseBody = $e->getResponse()->getBody();
             return  json_decode($responseBody)[0];
         }

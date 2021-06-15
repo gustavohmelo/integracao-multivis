@@ -32,7 +32,8 @@ class CancelPaymentRequest
             ]);
 
             return $response->getBody();
-        }catch (RequestException $e) {            $responseBody = $e->getResponse()->getBody();
+        }catch (RequestException $e) {
+            $responseBody = $e->getResponse()->getBody();
             return json_decode($responseBody)[0];
         }
     }
