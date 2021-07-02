@@ -35,7 +35,7 @@ class Environment implements Enviroment {
      */
     public static function production()
     {
-        $api      = 'https://api-prod.multivis.com';
+        $api      = 'https://ecommerce.adiq.io/';
 
         return new Environment($api);
     }
