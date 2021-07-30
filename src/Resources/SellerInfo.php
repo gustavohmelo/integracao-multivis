@@ -13,6 +13,8 @@ class SellerInfo {
     private $eci;
     private $xid;
     private $programProtocol;
+    private $tid;
+    private $mid;
 
     /**
      * @return mixed
@@ -112,6 +114,38 @@ class SellerInfo {
         $this->programProtocol = $programProtocol;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getTid()
+    {
+        return $this->tid;
+    }
+
+    /**
+     * @param mixed $tid
+     */
+    public function setTid($tid): void
+    {
+        $this->tid = $tid;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMid()
+    {
+        return $this->mid;
+    }
+
+    /**
+     * @param mixed $mid
+     */
+    public function setMid($mid): void
+    {
+        $this->mid = $mid;
+    }
+
     public function toArray() : array {
         $seller = [];
 
@@ -141,6 +175,14 @@ class SellerInfo {
 
         if ($this->getProgramProtocol()){
             $seller['programProtocol'] = $this->getProgramProtocol();
+        }
+
+        if ($this->getTid()){
+            $seller['tid'] = $this->getTid();
+        }
+
+        if ($this->getXid()){
+            $seller['xid'] = $this->getXid();
         }
 
         return $seller;

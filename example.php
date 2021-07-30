@@ -38,6 +38,8 @@ $sellerInfo->setSoftDescriptor('PAG*TESTE');
 $sellerInfo->setCavvUcaf('commerceauth');
 $sellerInfo->setEci('05');
 $sellerInfo->setXid('commerc');
+$sellerInfo->setMid('017005847301151');
+$sellerInfo->setTid('BC038931');
 $sellerInfo->setProgramProtocol('2.0.1');
 
 $response = $multiviz->paymentCard($payment, $cardInfo, $sellerInfo);
